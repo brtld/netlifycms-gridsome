@@ -21,3 +21,98 @@ collections:
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Description", name: "description", widget: "markdown"}
       - {label: "Body", name: "body", widget: "markdown"}
+backend:
+  name: github
+  repo: brtld/brtld-gridsome
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "content/about.yml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: markdown }
+          - label: Team
+            name: team
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Position, name: position, widget: string }
+              - { label: Photo, name: photo, widget: image }
+      - label: "Locations Page"
+        name: "locations"
+        file: "content/locations.yml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: markdown }
+          - label: Locations
+            name: locations
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Address, name: address, widget: string }
+  - label: "Partners"
+    name: "partners"
+    folder: "content/partners"
+    identifier_field: name
+    create: true
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Avatar", name: avatar, widget: image, required: false }
+      - { label: link, name: link, widget: string }
+
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    slug: "{{slug}}"
+    create: true
+    published: true
+    series: true
+    fields: # The fields for each document, usually in front matter
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: true}
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Cover Image",
+          name: "cover_image",
+          widget: "image",
+          required: false,}
+      - { label: "Intro", name: "intro", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - label: "Projects"
+    name: "projects"
+    folder: "content/projects"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Cover Image",
+          name: "cover_image",
+          widget: "image",
+          required: false }
+      - { label: "Intro", name: "intro", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Team", name: team, widget: list, required: false }
+      - { label: "Partners",
+          name: "partner",
+          widget: "relation",
+          collection: "partners",
+          searchFields: ["name"],
+          valueField: "name",
+          multiple: true,
+          required: false }
+      - { label: "Tags",
+          name: "tags",
+          widget: "list",
+          # default: ["post"],
+          required: false}
