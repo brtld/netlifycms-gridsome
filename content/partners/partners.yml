@@ -1,0 +1,13 @@
+partners:
+  - name: Saxion
+    id: saxion
+    avatar: /uploads/saxion200square.png
+    link: https://www.saxion.nl
+  - name: Gemeente Enschede
+    id: gemeente-enschede
+    avatar: /uploads/gemeente-enschede.png
+    link: https://enschede.nl
+  - name: test
+    id: test
+    avatar: /uploads/saxion200square.png
+    link: test
